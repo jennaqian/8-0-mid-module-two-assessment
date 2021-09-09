@@ -31,13 +31,13 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  if(!movies.length) {
-    throw "Movie title not provided"
+  if (!movies.length) {
+    throw "Movie title not provided";
   }
 
-  return movies.map( movie=> {
-    return movie.title
-  })
+  return movies.map((movie) => {
+    return movie.title;
+  });
 }
 
 /**
@@ -58,15 +58,14 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies) {
-  if(!movies.length) {
-    throw "Movie title not provided"
-  }
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) {
+    throw "Movie title not provided";
+  } 
 
-    return movies.some( movie => {
-      return movie.rated === "G"
-    })
-  
+  return movies.some((movie) => {
+    return movie.rated === rating;
+  });
 }
 
 /**
@@ -85,21 +84,18 @@ function checkIfAnyMovieHasRating(movies) {
       // Toy Story 4
     };
  */
-function findById(movies) {
-  if(!movies) {
-    throw "Movie does not exist"
-  } 
-  // else if (!movies.imdbID){
-  //   return null
-  // }
-
-  try {
-    return movies.find( movie => {
-      return movie.imdbID
-    })
-  } catch (error) {
-    return error
+function findById(movies, id) {
+  if (!movies.length) {
+    throw "Movie array is empty";
   }
+  if (!movies.imdbID){
+    return null
+  }
+
+  return movies.find((movie) => {
+      return movie.imdbID === id
+  });
+  
 }
 
 /**
@@ -124,8 +120,17 @@ function findById(movies) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
+    throw "Movie array is empty";
+  }
+  // if(!movies.genre) {
+  //   return []
+  // }
 
+  return movies.filter(movie => {
+    return movie.genre.toUpperCase().includes(genre.toUpperCase()) 
+  })
 }
 
 /**
@@ -152,9 +157,7 @@ function filterByGenre() {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {
-
-}
+function getAllMoviesReleasedAtOrBeforeYear() {}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -180,9 +183,7 @@ function getAllMoviesReleasedAtOrBeforeYear() {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {
-
-}
+function getRottenTomatoesScoreByMovie() {}
 
 // Do not change anything below this line.
 module.exports = {
